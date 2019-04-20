@@ -1,0 +1,24 @@
+CONSULTAS
+#todos los valores de los inputs que son utilizados en las cosultas serán puestos como '%input%'
+
+
+1.- 
+#asumimos que me dan el id de la región, no el nombre
+
+SELECT P.nombre 
+FROM Platos P, Restaurantes Rest, Region R
+WHERE Rest.rid = R.id = '%input%'
+
+2.- 
+#asumimos que mostrar las habitaciones es mostrar el id de la habitación
+SELECT Hab.habid, H.nombre
+FROM Habitaciones Hab, Hoteles H
+WHERE Hab.hid = H.hid AND H.estrellas > '%input%'
+
+3.-
+#Queremos mostrar toda la fila de las reservas? O solo la reserva id
+SELECT R.resvid
+FROM Reservas R, Usuarios U
+WHERE U.uid = R.uid = '%usuario_input%' and R.fecha_inicio >= '%inicio_input%' and R.fecha_fin <= '%fin_input%' 
+
+4.-
