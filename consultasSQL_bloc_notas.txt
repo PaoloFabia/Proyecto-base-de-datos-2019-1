@@ -9,11 +9,15 @@ SELECT P.nombre
 FROM Platos P, Restaurantes Rest, Region R
 WHERE Rest.rid = R.id = '%input%'
 
+
+
 2.- 
 #asumimos que mostrar las habitaciones es mostrar el id de la habitación
 SELECT Hab.habid, H.nombre
 FROM Habitaciones Hab, Hoteles H
 WHERE Hab.hid = H.hid AND H.estrellas > '%input%'
+
+
 
 3.-
 #Queremos mostrar toda la fila de las reservas? O solo la reserva id
@@ -21,4 +25,67 @@ SELECT R.resvid
 FROM Reservas R, Usuarios U
 WHERE U.uid = R.uid = '%usuario_input%' and R.fecha_inicio >= '%inicio_input%' and R.fecha_fin <= '%fin_input%' 
 
-4.-
+
+
+
+4.- #primero debemos ver las agencias que solo se encuentran presentes en una region 
+    # Después debemos ver todos los tours de aquella agencia.
+
+CREATE VIEW regiones_por_agencia(agencia, n_regiones)
+	SELECT aid, COUNT(*) AS n_regiones
+	FROM regiones_agencias
+	GROUP BY agencia
+
+#Considerando que un mismo tour puede estar en distintas agencias, 
+#Vamos a utilizar un SELECT DISTINCT para evitar repetidos (podríamos obviar este paso?)
+#Aumimos que "mostrar un tour" es mostrar su tid.
+
+SELECT DISTINCT TA.tid
+FROM regiones_agencias RA, tour_agencia TA
+WHERE RA.n_regiones = 1 AND TA.aid = RA.agencia
+
+
+
+
+5.- #UFFF no se si va a estar bien 
+
+CREATE VIEW reservas_por_habitacion(rid, habid, n_reservas)
+	SELECT H.rid, R.habid, COUNT(resvid) AS n_reservas
+	FROM hoteles H, habitaciones HAB, reservas R
+	WHERE HAB.hid = H.hid AND HAB.habid = R.habid
+	GROUP BY habid
+	
+	#Hasta acá hay una tabla grande con rid, habid y el número de reservas por habitación.
+	#falta filtrar esta para dejar solo las filas por región que tienen más reservas.
+	
+SELECT ?????
+
+
+
+
+6.- 
+#Vamos a entregar el uid y nombre de cada usuario que reservó la habitación.
+#asumimos que el id de la región es el número de cada región.
+
+SELECT U.uid, U.nombre
+FROM Usuarios U, Reservas R, SELECT(habid FROM Habitaciones
+				WHERE precios = MIN(precios)) AS HAB
+WHERE rid = 2 AND R.habid = HAB.habid AND U.uid = R.uid
+
+
+
+
+7.- 
+SELECT U.nombre, HAB.precio
+FROM Usuarios U, Reservas R, Habitaciones HAB
+WHERE R.resvid = '%input%'
+AND U.uid = R.uid AND R.habid = HAB.habid
+
+
+
+
+8.- 
+Uff chicos
+
+
+
