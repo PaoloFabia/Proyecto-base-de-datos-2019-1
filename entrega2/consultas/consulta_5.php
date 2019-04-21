@@ -1,11 +1,10 @@
-<?php 'Para cada región, entregue la habitación que ha sido reservada más veces.'; ?>
-
-
-
 <?php include('../templates/header.html');   ?>
 
 <body>
-<?php
+  <h1>Consulta 5: Para cada región, entregue la habitación que ha sido reservada más veces.</h1>
+  <br>
+  <br>
+  <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 

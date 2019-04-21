@@ -1,15 +1,14 @@
-<?php 'Dado un id de reserva, muestre el nombre del usuario que hizo la reserva junto al monto total que paga por esa reserva.'; ?>
-
-
-
 <?php include('../templates/header.html');   ?>
 
 <body>
-<?php
+  <h1>Consulta 7: Dado un id de reserva, muestre el nombre del usuario que hizo la reserva junto al monto total que paga por esa reserva.</h1>
+  <br>
+  <br>
+  <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  $var = $_POST[""];  # asi se inicializan las vars que van en la consulta
+  $id_reserva = $_POST["id_reserva"];  # asi se inicializan las vars que van en la consulta
 
 
  	$query = "SELECT ... FROM datos where ...;";

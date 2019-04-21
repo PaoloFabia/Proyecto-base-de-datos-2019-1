@@ -1,18 +1,17 @@
-<?php 'Dado un número de estrellas, muestre todas las habitaciones de hoteles con más de esa cantidad de estrellas, junto al nombre del hotel en el que está.
-'; ?>
-
-
 <?php include('../templates/header.html');   ?>
 
 <body>
-<?php
+  <h1>Consulta 2: Dado un número de estrellas, muestre todas las habitaciones de hoteles con más de esa cantidad de estrellas, junto al nombre del hotel en el que está</h1>
+  <br>
+  <br>
+  <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  $var = $_POST[""];  # asi se inicializan las vars que van en la consulta
+  $estrellas = $_POST["estrellas"];  # asi se inicializan las vars que van en la consulta
+  $estrellas = intval($estrellas);
 
-
- 	$query = "SELECT ... FROM datos where ...;";
+ 	$query = "SELECT hoteles.nombre, hoteles.estrellas, habitaciones.nombre, habitaciones.precio FROM hoteles, habitaciones WHERE hoteles.hid = habitaciones.hid AND hoteles.estrellas > $estrellas;";
 
 	$result = $db -> prepare($query);
 	$result -> execute();
@@ -21,13 +20,14 @@
 
   <table>
     <tr>
-      <th>atributo1</th>
-      <th>atributo2</th>
-      <th>atributo3</th>
+      <th>Hotel</th>
+      <th>Estrellas</th>
+      <th>Habitacion</th>
+      <th>Precio</th>
     </tr>
   <?php
 	foreach ($dataCollected as $d) {
-  		echo "<tr><td>$d[0]</td><td>$d[1]</td><td>$d[2]</td></tr>";
+  		echo "<tr><td>$d[0]</td><td>$d[1]</td><td>$d[2]</td><td>$d[3]</td></tr>";
 	}
   ?>
 	</table>

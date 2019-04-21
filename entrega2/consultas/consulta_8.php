@@ -1,15 +1,14 @@
-<?php 'Dado un número i, entrega la i-ésima habitación más cara. En caso de empate muestre las dos.'; ?>
-
-
-
 <?php include('../templates/header.html');   ?>
 
 <body>
-<?php
+  <h1>Consulta 8: Dado un número i, entrega la i-ésima habitación más cara. En caso de empate muestre las dos.</h1>
+  <br>
+  <br>
+  <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  $var = $_POST[""];  # asi se inicializan las vars que van en la consulta
+  $i = $_POST["i"];  # asi se inicializan las vars que van en la consulta
 
 
  	$query = "SELECT ... FROM datos where ...;";

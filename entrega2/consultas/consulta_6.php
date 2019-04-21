@@ -1,11 +1,10 @@
-<?php 'Entregue todos los usuarios que han reservado la habitación más barata en la región II.'; ?>
-
-
-
 <?php include('../templates/header.html');   ?>
 
 <body>
-<?php
+  <h1>Consulta 6: Entregue todos los usuarios que han reservado la habitación más barata en la región II.</h1>
+  <br>
+  <br>
+  <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 

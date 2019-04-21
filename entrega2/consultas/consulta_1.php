@@ -1,18 +1,17 @@
-<?php 'Dada una región, muestre todos los platos de los restaurantes ubicados en dicha región.'; ?>
-
-
-
 <?php include('../templates/header.html');   ?>
 
 <body>
-<?php
+  <h1>Consulta 1: Dada una región, muestre todos los platos de los restaurantes ubicados en dicha región.</h1>
+  <br>
+  <br>
+  <?php
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  $var = $_POST[""];  # asi se inicializan las vars que van en la consulta
+  $region_id = $_POST["region_id"];  # asi se inicializan las vars que van en la consulta
+  $region_id = intval($region_id);
 
-
- 	$query = "SELECT ... FROM datos where ...;";
+ 	$query = "SELECT restaurantes.nombre, restaurantes.rid, platos.nombre FROM restaurantes, platos WHERE platos.restid = restaurantes.restid AND restaurantes.rid = $region_id;";
 
 	$result = $db -> prepare($query);
 	$result -> execute();
@@ -21,9 +20,9 @@
 
   <table>
     <tr>
-      <th>atributo1</th>
-      <th>atributo2</th>
-      <th>atributo3</th>
+      <th>Restaurante</th>
+      <th>Región</th>
+      <th>Platos</th>
     </tr>
   <?php
 	foreach ($dataCollected as $d) {
